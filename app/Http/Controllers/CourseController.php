@@ -20,9 +20,9 @@ class CourseController extends Controller
     public function store(Request $request): JsonResponse
     {
         $request->validate([
-            'name' => 'required',
-            'seats' => 'required',
-            'subject_id' => 'required',
+            'name' => 'required|string|max:255',
+            'seats' => 'required|integer|between:1,99',
+            'subject_id' => 'required|exists:subjects,id',
         ]);
 
         $course = Course::create([
@@ -56,9 +56,9 @@ class CourseController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
-            'seats' => 'required',
-            'subject_id' => 'required',
+            'name' => 'required|string|max:255',
+            'seats' => 'required|integer|between:1,99',
+            'subject_id' => 'required|exists:subjects,id',
         ]);
 
         $course->update([
@@ -69,6 +69,26 @@ class CourseController extends Controller
 
         return response()->json($course, Response::HTTP_OK);
     }
+
+    public function updateSeats(Request $request, string $id): JsonResponse
+{
+    $course = Course::find($id);
+
+    if (!$course) {
+        return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+    }
+
+    $request->validate([
+        'seats' => 'required|integer|between:1,99',
+    ]);
+
+    $newSeats = $request->input('seats');
+    $course->seats = $newSeats;
+    $course->save();
+
+    return response()->json($course, Response::HTTP_OK);
+}
+
 
     public function destroy(string $id): JsonResponse
     {

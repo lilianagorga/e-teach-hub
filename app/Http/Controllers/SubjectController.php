@@ -19,7 +19,7 @@ class SubjectController extends Controller
     public function store(Request $request): JsonResponse
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
         ]);
 
         $subject = Subject::create([
@@ -51,7 +51,7 @@ class SubjectController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
         ]);
 
         $subject->update([

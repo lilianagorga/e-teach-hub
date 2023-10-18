@@ -94,7 +94,7 @@ class SubjectTest extends TestCase
     public function testUpdateSubject()
     {
         $subject = Subject::factory()->create();
-        $response = $this->patch("/api/subject/{$subject->id}", [
+        $response = $this->put("/api/subject/{$subject->id}", [
             'name' => 'Updated Subject Name',
         ]);
 

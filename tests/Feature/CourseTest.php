@@ -118,7 +118,7 @@ class CourseTest extends TestCase
             'seats' => 30,
             'subject_id' => $subject->id,
         ];
-        $response = $this->patch("/api/course/{$course->id}", $courseData);
+        $response = $this->put("/api/course/{$course->id}", $courseData);
 
         $response->assertOk();
         $this->assertDatabaseHas('courses', $courseData);
@@ -132,6 +132,17 @@ class CourseTest extends TestCase
 
         $response->assertNoContent();
         $this->assertDatabaseMissing('courses', ['id' => $course->id]);
+    }
+
+    public function testSeatsCanBeChanged()
+    {
+        $course = Course::factory()->create();
+        $newSeats = Course::factory()->make()->seats;
+
+        $response = $this->patch("/api/course/{$course->id}/seats", ['seats' => $newSeats]);
+
+        $response->assertOk();
+        $this->assertDatabaseHas('courses', ['id' => $course->id, 'seats' => $newSeats]);
     }
 
 }

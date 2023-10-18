@@ -28,9 +28,12 @@ Route::post('/course', [CourseController::class, 'store']);
 
 
 Route::get('/subject/{id}', [SubjectController::class, 'show']);
-Route::patch('/subject/{id}', [SubjectController::class, 'update']);
+Route::put('/subject/{id}', [SubjectController::class, 'update']);
 Route::delete('/subject/{id}', [SubjectController::class, 'destroy']);
 
 Route::get('/course/{id}', [CourseController::class, 'show']);
-Route::patch('/course/{id}', [CourseController::class, 'update']);
+Route::put('/course/{id}', [CourseController::class, 'update']);
 Route::delete('/course/{id}', [CourseController::class, 'destroy']);
+
+Route::patch('/course/{id}/seats', [CourseController::class, 'updateSeats']);
+
