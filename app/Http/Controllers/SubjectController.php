@@ -2,47 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $subjects = Subject::all();
+        return response()->json($subjects, Response::HTTP_OK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $subject = Subject::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return response()->json($subject, Response::HTTP_CREATED);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
-        //
+        $subject = Subject::find($id);
+
+        if (!$subject)
+        {
+            return response()->json(['message' => "Subject didn't find"], Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json($subject, Response::HTTP_OK);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): JsonResponse
     {
-        //
+        $subject = Subject::find($id);
+
+        if (!$subject)
+        {
+            return response()->json(['message' => "Subject didn't find"], Response::HTTP_NOT_FOUND);
+        }
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $subject->update([
+            'name' => $request->input('name'),
+        ]);
+
+        return response()->json($subject, Response::HTTP_OK);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
-        //
+        $subject = Subject::find($id);
+
+        if (!$subject)
+        {
+            return response()->json(['message' => "Subject didn't find"], Response::HTTP_NOT_FOUND);
+        }
+
+        $subject->delete();
+
+        return response()->json(['message' => 'Subject deleted successfully'], Response::HTTP_NO_CONTENT);
     }
 }

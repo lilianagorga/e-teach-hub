@@ -57,4 +57,81 @@ class CourseTest extends TestCase
         $this->assertEquals('', $course->name);
         $this->assertEquals($subject->id, $course->subject_id);
     }
+
+    public function testIndexCourse()
+    {
+        $response = $this->get('/api/course');
+
+        $response->assertOk();
+    }
+
+    public function testFetchAllCourses()
+    {
+        Course::factory()->count(5)->create();
+
+        $response = $this->get('/api/course');
+
+        $response->assertOk();
+        $response->assertJsonCount(5);
+    }
+
+    public function testFetchSingleCourse()
+    {
+        $course = Course::factory()->create();
+
+        $response = $this->get("/api/course/{$course->id}");
+
+        $response->assertOk();
+        $response->assertJson(['id' => $course->id]);
+    }
+
+    public function testStoreCourse()
+    {
+        $subject = $this->createSubject();
+        $courseData = [
+            'name' => 'New Course Name',
+            'seats' => 30,
+            'subject_id' => $subject->id,
+        ];
+
+        $response = $this->post('/api/course', $courseData);
+
+        $response->assertCreated();
+        $this->assertDatabaseHas('courses', $courseData);
+    }
+
+    public function testShowCourse()
+    {
+        $course = Course::factory()->create();
+
+        $response = $this->get("/api/course/{$course->id}");
+        $response->assertOk();
+        $response->assertJson(['name' => $course->name]);
+    }
+
+    public function testUpdateCourse()
+    {
+        $course = Course::factory()->create();
+        $subject = $this->createSubject();
+        $courseData = [
+            'name' => 'New Course Name',
+            'seats' => 30,
+            'subject_id' => $subject->id,
+        ];
+        $response = $this->patch("/api/course/{$course->id}", $courseData);
+
+        $response->assertOk();
+        $this->assertDatabaseHas('courses', $courseData);
+    }
+
+    public function testDeleteCourse()
+    {
+        $course = Course::factory()->create();
+
+        $response = $this->delete("/api/course/{$course->id}");
+
+        $response->assertNoContent();
+        $this->assertDatabaseMissing('courses', ['id' => $course->id]);
+    }
+
 }

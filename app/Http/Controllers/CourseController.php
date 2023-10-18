@@ -2,47 +2,85 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $courses = Course::all();
+
+        return response()->json($courses, Response::HTTP_OK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'seats' => 'required',
+            'subject_id' => 'required',
+        ]);
+
+        $course = Course::create([
+            'name' => $request->input('name'),
+            'seats' => $request->input('seats'),
+            'subject_id' => $request->input('subject_id'),
+        ]);
+
+        return response()->json($course, Response::HTTP_CREATED);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
-        //
+        $course = Course::find($id);
+
+        if (!$course)
+        {
+            return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json($course, Response::HTTP_OK);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): JsonResponse
     {
-        //
+        $course = Course::find($id);
+
+        if (!$course)
+        {
+            return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+        }
+
+        $request->validate([
+            'name' => 'required',
+            'seats' => 'required',
+            'subject_id' => 'required',
+        ]);
+
+        $course->update([
+            'name' => $request->input('name'),
+            'seats' => $request->input('seats'),
+            'subject_id' => $request->input('subject_id'),
+        ]);
+
+        return response()->json($course, Response::HTTP_OK);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
-        //
+        $course = Course::find($id);
+
+        if (!$course)
+        {
+            return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+        }
+
+        $course->delete();
+
+        return response()->json(['message' => "Course deleted successfully"], Response::HTTP_NO_CONTENT);
     }
 }

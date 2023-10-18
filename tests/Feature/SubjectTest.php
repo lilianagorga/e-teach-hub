@@ -42,4 +42,74 @@ class SubjectTest extends TestCase
         $this->assertTrue(Schema::hasTable('subjects'));
     }
 
+    public function testIndexSubject()
+    {
+        $response = $this->get('/api/subject');
+        $response->assertOk();
+    }
+
+    public function testFetchAllSubjects()
+    {
+        Subject::factory()->count(5)->create();
+
+        $response = $this->get('/api/subject');
+
+        $response->assertOk();
+        $response->assertJsonCount(5);
+
+    }
+
+    public function testFetchSingleSubject()
+    {
+        $subject = $this->createSubject();
+
+        $response = $this->get("/api/subject/{$subject->id}");
+
+        $response->assertOk();
+        $response->assertJson(['id' => $subject->id]);
+    }
+
+
+
+    public function testStoreSubject()
+    {
+        $response = $this->post('/api/subject', [
+            'name' => 'New Subject Name',
+        ]);
+
+        $response->assertCreated();
+        $this->assertDatabaseHas('subjects', ['name' => 'New Subject Name']);
+    }
+
+    public function testShowSubject()
+    {
+        $subject = Subject::factory()->create();
+
+        $response = $this->get("/api/subject/{$subject->id}");
+
+        $response->assertOk();
+        $response->assertJson(['name' => $subject->name]);
+    }
+
+    public function testUpdateSubject()
+    {
+        $subject = Subject::factory()->create();
+        $response = $this->patch("/api/subject/{$subject->id}", [
+            'name' => 'Updated Subject Name',
+        ]);
+
+        $response->assertOk();
+        $this->assertDatabaseHas('subjects', ['id' => $subject->id, 'name' => 'Updated Subject Name']);
+    }
+
+    public function testDeleteSubject()
+    {
+        $subject = Subject::factory()->create();
+
+        $response = $this->delete("/api/subject/{$subject->id}");
+
+        $response->assertNoContent();
+        $this->assertDatabaseMissing('subjects', ['id' => $subject->id]);
+    }
+
 }

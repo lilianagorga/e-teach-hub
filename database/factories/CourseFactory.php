@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Course;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,8 @@ class CourseFactory extends Factory
     {
         return [
             'name' => '',
-            'seats' => $this->faker->randomNumber(2),
-            'subject_id' => null,
+            'seats' => $this->faker->unique()->numberBetween(1, 99),
+            'subject_id' => Subject::factory(),
         ];
     }
 }

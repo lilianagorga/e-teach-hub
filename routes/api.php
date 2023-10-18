@@ -22,3 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/subject', [SubjectController::class, 'index']);
 Route::get('/course', [CourseController::class, 'index']);
+
+Route::post('/subject', [SubjectController::class, 'store']);
+Route::post('/course', [CourseController::class, 'store']);
+
+
+Route::get('/subject/{id}', [SubjectController::class, 'show']);
+Route::patch('/subject/{id}', [SubjectController::class, 'update']);
+Route::delete('/subject/{id}', [SubjectController::class, 'destroy']);
+
+Route::get('/course/{id}', [CourseController::class, 'show']);
+Route::patch('/course/{id}', [CourseController::class, 'update']);
+Route::delete('/course/{id}', [CourseController::class, 'destroy']);
