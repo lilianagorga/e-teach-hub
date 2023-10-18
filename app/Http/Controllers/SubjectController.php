@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubjectRequest;
 use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Http\JsonResponse;
@@ -16,15 +17,10 @@ class SubjectController extends Controller
         return response()->json($subjects, Response::HTTP_OK);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(SubjectRequest $request): JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
 
-        $subject = Subject::create([
-            'name' => $request->input('name'),
-        ]);
+        $subject = Subject::create($request->validated());
 
         return response()->json($subject, Response::HTTP_CREATED);
     }
@@ -41,7 +37,7 @@ class SubjectController extends Controller
         return response()->json($subject, Response::HTTP_OK);
     }
 
-    public function update(Request $request, string $id): JsonResponse
+    public function update(SubjectRequest $request, string $id): JsonResponse
     {
         $subject = Subject::find($id);
 
@@ -50,13 +46,7 @@ class SubjectController extends Controller
             return response()->json(['message' => "Subject didn't find"], Response::HTTP_NOT_FOUND);
         }
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $subject->update([
-            'name' => $request->input('name'),
-        ]);
+        $subject->update($request->validated());
 
         return response()->json($subject, Response::HTTP_OK);
     }

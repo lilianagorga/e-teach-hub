@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\SubjectController;
-use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
+
 
 class SubjectTest extends TestCase
 {
@@ -73,12 +73,12 @@ class SubjectTest extends TestCase
 
     public function testStoreSubject()
     {
+        $subject = Subject::factory()->make();
         $response = $this->post('/api/subject', [
-            'name' => 'New Subject Name',
-        ]);
-
-        $response->assertCreated();
-        $this->assertDatabaseHas('subjects', ['name' => 'New Subject Name']);
+            'name' => $subject->name,
+        ])->assertCreated();
+        $this->assertEquals($subject->name, $response['name']);
+        $this->assertDatabaseHas('subjects', ['name' => $subject->name]);
     }
 
     public function testShowSubject()
@@ -93,13 +93,12 @@ class SubjectTest extends TestCase
 
     public function testUpdateSubject()
     {
-        $subject = Subject::factory()->create();
+        $subject = $this->createSubject();
         $response = $this->put("/api/subject/{$subject->id}", [
-            'name' => 'Updated Subject Name',
-        ]);
-
-        $response->assertOk();
-        $this->assertDatabaseHas('subjects', ['id' => $subject->id, 'name' => 'Updated Subject Name']);
+            'name' => $subject->name,
+        ])->assertOk();
+        $this->assertEquals($subject->name, $response['name']);
+        $this->assertDatabaseHas('subjects', ['id' => $subject->id, 'name' => $subject->name]);
     }
 
     public function testDeleteSubject()
@@ -110,6 +109,21 @@ class SubjectTest extends TestCase
 
         $response->assertNoContent();
         $this->assertDatabaseMissing('subjects', ['id' => $subject->id]);
+    }
+
+    public function testWhileStoringSubjectNameFieldIsRequired()
+    {
+        $this->withExceptionHandling();
+        $this->postJson('/api/subject')->assertUnprocessable()->assertJsonValidationErrors(['name']);;
+    }
+
+    public function testWhileUpdatingSubjectNameFieldIsRequired()
+    {
+        $subject = $this->createSubject();
+        $this->withExceptionHandling();
+        $this->putJson("/api/subject/{$subject->id}")
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['name']);
     }
 
 }

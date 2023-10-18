@@ -145,4 +145,35 @@ class CourseTest extends TestCase
         $this->assertDatabaseHas('courses', ['id' => $course->id, 'seats' => $newSeats]);
     }
 
+    public function testWhileStoringCourseNameFieldIsRequired()
+    {
+        $this->withExceptionHandling();
+        $this->postJson('/api/course')->assertUnprocessable()->assertJsonValidationErrors(['name']);
+    }
+
+    public function testWhileUpdatingCourseNameFieldIsRequired()
+    {
+        $course = $this->createCourse();
+        $this->withExceptionHandling();
+        $this->putJson("/api/course/{$course->id}")
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['name']);
+    }
+
+    public function testValidationForUpdateSeats()
+    {
+        $course = $this->createCourse();
+        $this->withExceptionHandling();
+        $this->patchJson("/api/course/{$course->id}/seats", ['seats' => ''])->assertUnprocessable()
+            ->assertJsonValidationErrors(['seats']);
+
+        $this->patchJson("/api/course/{$course->id}/seats", ['seats' => 150])->assertUnprocessable()
+            ->assertJsonValidationErrors(['seats']);
+
+        $newSeats = 50;
+        $this->patchJson("/api/course/{$course->id}/seats", ['seats' => $newSeats])->assertOk()->json();
+    }
+
+
+
 }
