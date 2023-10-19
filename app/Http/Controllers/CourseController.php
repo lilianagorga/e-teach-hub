@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -29,7 +27,7 @@ class CourseController extends Controller
 
         if (!$course)
         {
-            return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
         }
 
         return response()->json($course, Response::HTTP_OK);
@@ -41,7 +39,7 @@ class CourseController extends Controller
 
         if (!$course)
         {
-            return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
         }
 
         $course->update($request->validated());
@@ -54,7 +52,7 @@ class CourseController extends Controller
         $course = Course::find($id);
 
         if (!$course) {
-            return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
         }
 
         $course->update($request->validated());
@@ -69,7 +67,7 @@ class CourseController extends Controller
 
         if (!$course)
         {
-            return response()->json(['message' => "Course didn't find"], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
         }
 
         $course->delete();

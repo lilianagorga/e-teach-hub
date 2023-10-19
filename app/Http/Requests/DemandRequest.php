@@ -5,12 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @property mixed $email
- * @property mixed $password
- */
-
-class LoginRequest extends FormRequest
+class DemandRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -18,13 +13,12 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * @return array<string, ValidationRule|array|string>
+     * @return array<string,ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'email' => 'required',
-            'password' => 'required'
+            'title' => ['required'],
         ];
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\CourseController;
 use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 

@@ -28,7 +28,7 @@ class SubjectController extends Controller
 
         if (!$subject)
         {
-            return response()->json(['message' => "Subject didn't find"], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Subject not found'], Response::HTTP_NOT_FOUND);
         }
 
         return response()->json($subject, Response::HTTP_OK);
@@ -40,7 +40,7 @@ class SubjectController extends Controller
 
         if (!$subject)
         {
-            return response()->json(['message' => "Subject didn't find"], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Subject not found'], Response::HTTP_NOT_FOUND);
         }
 
         $subject->update($request->validated());
@@ -54,7 +54,7 @@ class SubjectController extends Controller
 
         if (!$subject)
         {
-            return response()->json(['message' => "Subject didn't find"], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Subject not found'], Response::HTTP_NOT_FOUND);
         }
 
         $subject->delete();

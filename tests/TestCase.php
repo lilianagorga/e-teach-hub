@@ -3,9 +3,11 @@
 namespace Tests;
 
 use App\Models\Course;
+use App\Models\Demand;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Http\Request;
 use Laravel\Sanctum\Sanctum;
 
 abstract class TestCase extends BaseTestCase
@@ -39,4 +41,10 @@ abstract class TestCase extends BaseTestCase
         Sanctum::actingAs($user);
         return $user;
     }
+
+    public function createDemand($args = [])
+    {
+        return Demand::factory()->create($args);
+    }
+
 }

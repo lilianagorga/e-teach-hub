@@ -7,7 +7,6 @@ use App\Models\Subject;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use function Symfony\Component\Translation\t;
 
 class UserTest extends TestCase
 {
@@ -47,5 +46,21 @@ class UserTest extends TestCase
         $this->createCourse();
         $response = $this->getJson('/api/course')->assertOk()->json();
         $this->assertEquals($response[0]['name'], $course->name);
+    }
+
+    public function testFetchSingleSubjectForUser()
+    {
+        $subject = $this->createSubject(['user_id' => $this->user->id]);
+        $this->createSubject();
+        $response = $this->getJson("/api/subject/{$subject->id}")->assertOk()->json();
+        $this->assertEquals($response['name'], $subject->name);
+    }
+
+    public function testFetchSingleCourseForUser()
+    {
+        $course = $this->createCourse(['user_id' => $this->user->id]);
+        $this->createCourse();
+        $response = $this->getJson("/api/course/{$course->id}")->assertOk()->json();
+        $this->assertEquals($response['name'], $course->name);
     }
 }
