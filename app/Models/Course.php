@@ -18,7 +18,8 @@ class Course extends Model
         [
             'name',
             'seats',
-            'subject_id'
+            'subject_id',
+             'user_id',
         ];
 
     public function course(): HasOne

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
-use App\Models\Subject;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CourseController extends Controller
@@ -14,16 +15,12 @@ class CourseController extends Controller
     public function index(): JsonResponse
     {
         $courses = Course::all();
-
         return response()->json($courses, Response::HTTP_OK);
     }
 
-    public function store(CourseRequest $request): JsonResponse
+    public function store(CourseRequest $request): Response
     {
-
-        $course = Course::create($request->validated());
-
-        return response()->json($course, Response::HTTP_CREATED);
+        return response(auth()->user()->courses()->create($request->validated()), Response::HTTP_CREATED);
     }
 
     public function show(string $id): JsonResponse

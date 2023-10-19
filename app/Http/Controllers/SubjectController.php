@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\Controller;
 use App\Http\Requests\SubjectRequest;
-use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class SubjectController extends Controller
@@ -17,12 +16,10 @@ class SubjectController extends Controller
         return response()->json($subjects, Response::HTTP_OK);
     }
 
-    public function store(SubjectRequest $request): JsonResponse
+    public function store(SubjectRequest $request): Response
     {
+        return response(auth()->user()->subjects()->create($request->validated()), Response::HTTP_CREATED);
 
-        $subject = Subject::create($request->validated());
-
-        return response()->json($subject, Response::HTTP_CREATED);
     }
 
     public function show(string $id): JsonResponse

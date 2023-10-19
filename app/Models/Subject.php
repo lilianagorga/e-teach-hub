@@ -16,7 +16,8 @@ class Subject extends Model
 
     protected $fillable =
         [
-            'name'
+            'name',
+            'user_id',
         ];
 
     public function subject(): BelongsTo

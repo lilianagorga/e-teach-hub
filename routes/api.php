@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Http\Request;
@@ -20,20 +22,36 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/subject', [SubjectController::class, 'index']);
-Route::get('/course', [CourseController::class, 'index']);
+Route::middleware('auth:sanctum')->group(function ()
+{
+   Route::apiResource('/subject', SubjectController::class);
+   Route::apiResource('/course', CourseController::class);
+   Route::patch('/course/{id}/seats', [CourseController::class, 'updateSeats']);
+});
 
-Route::post('/subject', [SubjectController::class, 'store']);
-Route::post('/course', [CourseController::class, 'store']);
+
+Route::post('/user.register', RegisterController::class);
+Route::post('/user.login', LoginController::class);
 
 
-Route::get('/subject/{id}', [SubjectController::class, 'show']);
-Route::put('/subject/{id}', [SubjectController::class, 'update']);
-Route::delete('/subject/{id}', [SubjectController::class, 'destroy']);
+//Route::get('/subject', [SubjectController::class, 'index']);
+//Route::get('/course', [CourseController::class, 'index']);
+//
+//Route::post('/subject', [SubjectController::class, 'store']);
+//Route::post('/course', [CourseController::class, 'store']);
+//
+//
+//Route::get('/subject/{id}', [SubjectController::class, 'show']);
+//Route::put('/subject/{id}', [SubjectController::class, 'update']);
+//Route::delete('/subject/{id}', [SubjectController::class, 'destroy']);
+//
+//Route::get('/course/{id}', [CourseController::class, 'show']);
+//Route::put('/course/{id}', [CourseController::class, 'update']);
+//Route::delete('/course/{id}', [CourseController::class, 'destroy']);
+//
+//Route::patch('/course/{id}/seats', [CourseController::class, 'updateSeats']);
 
-Route::get('/course/{id}', [CourseController::class, 'show']);
-Route::put('/course/{id}', [CourseController::class, 'update']);
-Route::delete('/course/{id}', [CourseController::class, 'destroy']);
 
-Route::patch('/course/{id}/seats', [CourseController::class, 'updateSeats']);
+
+
 

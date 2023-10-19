@@ -17,6 +17,7 @@ class SubjectTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = $this->authUser();
     }
 
     public function test_check_if_subject_route_exists(): void
@@ -73,12 +74,18 @@ class SubjectTest extends TestCase
 
     public function testStoreSubject()
     {
+        $user = $this->authUser();
         $subject = Subject::factory()->make();
         $response = $this->post('/api/subject', [
             'name' => $subject->name,
+            'user_id' => $user->id
         ])->assertCreated();
         $this->assertEquals($subject->name, $response['name']);
-        $this->assertDatabaseHas('subjects', ['name' => $subject->name]);
+        $this->assertDatabaseHas('subjects',
+            [
+                'name' => $subject->name,
+                'user_id' => $user->id
+            ]);
     }
 
     public function testShowSubject()

@@ -17,6 +17,7 @@ class CourseTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = $this->authUser();
     }
 
     public function test_check_if_course_route_exists(): void
@@ -87,11 +88,13 @@ class CourseTest extends TestCase
 
     public function testStoreCourse()
     {
+        $user = $this->authUser();
         $subject = $this->createSubject();
         $courseData = [
             'name' => 'New Course Name',
             'seats' => 30,
             'subject_id' => $subject->id,
+            'user_id' => $user->id
         ];
 
         $response = $this->post('/api/course', $courseData);

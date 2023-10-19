@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,10 @@ class SubjectFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'user_id' => function()
+            {
+                return User::factory()->create()->id;
+            }
         ];
     }
 }
