@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CustomAuth\LoginController;
+use App\Http\Controllers\CustomAuth\RegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DemandController;
 use App\Http\Controllers\SubjectController;

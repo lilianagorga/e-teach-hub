@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature\CustomAuth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -19,7 +19,7 @@ class LoginTest extends TestCase
 
     public function testIfUserEmailIsNotAvailableThenItReturnError(): void
     {
-        $this->postJson('/api/user.login', ['email' => 'email', 'password' => 'password'])->assertUnauthorized();
+        $this->postJson('/api/user.login', ['email' => 'test@test.com', 'password' => 'password'])->assertUnauthorized();
     }
 
     public function testItRaiseErrorIfPasswordIsIncorrect(): void

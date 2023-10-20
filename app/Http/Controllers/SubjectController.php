@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Auth\Controller;
 use App\Http\Requests\SubjectRequest;
 use App\Models\Subject;
 use Illuminate\Http\JsonResponse;

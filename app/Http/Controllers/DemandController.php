@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DemandRequest;
 use App\Models\Demand;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Auth\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class DemandController extends Controller
