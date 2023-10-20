@@ -5,7 +5,6 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DemandController;
 use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +34,3 @@ Route::middleware('auth:sanctum')->group(function ()
 
 Route::post('/user.register', RegisterController::class);
 Route::post('/user.login', LoginController::class);
-
-
