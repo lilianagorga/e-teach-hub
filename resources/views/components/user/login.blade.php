@@ -1,10 +1,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <title>
-            {{ $title }}
-        </title>
-    </head>
+    <head></head>
     <body>
-
+        <div>
+            {{ $item }}
+        </div>
     </body>
 </html>
