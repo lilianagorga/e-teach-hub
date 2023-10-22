@@ -22,7 +22,7 @@ class SubjectTest extends TestCase
 
     public function test_check_if_subject_route_exists(): void
     {
-        $response = $this->get('/api/subject');
+        $response = $this->get('/api/subjects');
         $response->assertOk();
 
     }
@@ -45,7 +45,7 @@ class SubjectTest extends TestCase
 
     public function testIndexSubject()
     {
-        $response = $this->get('/api/subject');
+        $response = $this->get('/api/subjects');
         $response->assertOk();
     }
 
@@ -53,7 +53,7 @@ class SubjectTest extends TestCase
     {
         Subject::factory()->count(5)->create();
 
-        $response = $this->get('/api/subject');
+        $response = $this->get('/api/subjects');
 
         $response->assertOk();
         $response->assertJsonCount(5);
@@ -64,7 +64,7 @@ class SubjectTest extends TestCase
     {
         $subject = $this->createSubject();
 
-        $response = $this->get("/api/subject/{$subject->id}");
+        $response = $this->get("/api/subjects/{$subject->id}");
 
         $response->assertOk();
         $response->assertJson(['id' => $subject->id]);
@@ -76,7 +76,7 @@ class SubjectTest extends TestCase
     {
         $user = $this->authUser();
         $subject = Subject::factory()->make();
-        $response = $this->post('/api/subject', [
+        $response = $this->post('/api/subjects', [
             'name' => $subject->name,
             'user_id' => $user->id
         ])->assertCreated();
@@ -92,7 +92,7 @@ class SubjectTest extends TestCase
     {
         $subject = Subject::factory()->create();
 
-        $response = $this->get("/api/subject/{$subject->id}");
+        $response = $this->get("/api/subjects/{$subject->id}");
 
         $response->assertOk();
         $response->assertJson(['name' => $subject->name]);
@@ -101,7 +101,7 @@ class SubjectTest extends TestCase
     public function testUpdateSubject()
     {
         $subject = $this->createSubject();
-        $response = $this->put("/api/subject/{$subject->id}", [
+        $response = $this->put("/api/subjects/{$subject->id}", [
             'name' => $subject->name,
         ])->assertOk();
         $this->assertEquals($subject->name, $response['name']);
@@ -112,7 +112,7 @@ class SubjectTest extends TestCase
     {
         $subject = Subject::factory()->create();
 
-        $response = $this->delete("/api/subject/{$subject->id}");
+        $response = $this->delete("/api/subjects/{$subject->id}");
 
         $response->assertNoContent();
         $this->assertDatabaseMissing('subjects', ['id' => $subject->id]);
@@ -121,14 +121,14 @@ class SubjectTest extends TestCase
     public function testWhileStoringSubjectNameFieldIsRequired()
     {
         $this->withExceptionHandling();
-        $this->postJson('/api/subject')->assertUnprocessable()->assertJsonValidationErrors(['name']);;
+        $this->postJson('/api/subjects')->assertUnprocessable()->assertJsonValidationErrors(['name']);;
     }
 
     public function testWhileUpdatingSubjectNameFieldIsRequired()
     {
         $subject = $this->createSubject();
         $this->withExceptionHandling();
-        $this->putJson("/api/subject/{$subject->id}")
+        $this->putJson("/api/subjects/{$subject->id}")
             ->assertUnprocessable()
             ->assertJsonValidationErrors(['name']);
     }

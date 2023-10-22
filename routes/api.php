@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\CustomAuth\LoginController;
-use App\Http\Controllers\CustomAuth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DemandController;
 use App\Http\Controllers\SubjectController;
@@ -25,9 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function ()
 {
-   Route::apiResource('/subject', SubjectController::class);
-   Route::apiResource('/course', CourseController::class);
-   Route::apiResource('/demand', DemandController::class);
+   Route::apiResource('/subjects', SubjectController::class);
+   Route::apiResource('/courses', CourseController::class);
+   Route::apiResource('/demands', DemandController::class);
 });
 
 Route::post('/user/register', RegisterController::class);

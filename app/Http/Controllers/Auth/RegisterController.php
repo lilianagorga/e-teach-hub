@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\CustomAuth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomAuth\RegisterRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 

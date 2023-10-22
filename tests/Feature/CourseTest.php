@@ -21,7 +21,7 @@ class CourseTest extends TestCase
 
     public function test_check_if_course_route_exists(): void
     {
-        $response = $this->get('/api/course');
+        $response = $this->get('/api/courses');
 
         $response->assertOk();
     }
@@ -60,7 +60,7 @@ class CourseTest extends TestCase
 
     public function testIndexCourse()
     {
-        $response = $this->get('/api/course');
+        $response = $this->get('/api/courses');
 
         $response->assertOk();
     }
@@ -69,7 +69,7 @@ class CourseTest extends TestCase
     {
         Course::factory()->count(5)->create();
 
-        $response = $this->get('/api/course');
+        $response = $this->get('/api/courses');
 
         $response->assertOk();
         $response->assertJsonCount(5);
@@ -79,7 +79,7 @@ class CourseTest extends TestCase
     {
         $course = Course::factory()->create();
 
-        $response = $this->get("/api/course/{$course->id}");
+        $response = $this->get("/api/courses/{$course->id}");
 
         $response->assertOk();
         $response->assertJson(['id' => $course->id]);
@@ -96,7 +96,7 @@ class CourseTest extends TestCase
             'user_id' => $user->id
         ];
 
-        $response = $this->post('/api/course', $courseData);
+        $response = $this->post('/api/courses', $courseData);
 
         $response->assertCreated();
         $this->assertDatabaseHas('courses', $courseData);
@@ -106,7 +106,7 @@ class CourseTest extends TestCase
     {
         $course = Course::factory()->create();
 
-        $response = $this->get("/api/course/{$course->id}");
+        $response = $this->get("/api/courses/{$course->id}");
         $response->assertOk();
         $response->assertJson(['name' => $course->name]);
     }
@@ -120,7 +120,7 @@ class CourseTest extends TestCase
             'seats' => 30,
             'subject_id' => $subject->id,
         ];
-        $response = $this->put("/api/course/{$course->id}", $courseData);
+        $response = $this->put("/api/courses/{$course->id}", $courseData);
 
         $response->assertOk();
         $this->assertDatabaseHas('courses', $courseData);
@@ -130,7 +130,7 @@ class CourseTest extends TestCase
     {
         $course = Course::factory()->create();
 
-        $response = $this->delete("/api/course/{$course->id}");
+        $response = $this->delete("/api/courses/{$course->id}");
 
         $response->assertNoContent();
         $this->assertDatabaseMissing('courses', ['id' => $course->id]);
@@ -139,14 +139,14 @@ class CourseTest extends TestCase
     public function testWhileStoringCourseNameFieldIsRequired()
     {
         $this->withExceptionHandling();
-        $this->postJson('/api/course')->assertUnprocessable()->assertJsonValidationErrors(['name']);
+        $this->postJson('/api/courses')->assertUnprocessable()->assertJsonValidationErrors(['name']);
     }
 
     public function testWhileUpdatingCourseNameFieldIsRequired()
     {
         $course = $this->createCourse();
         $this->withExceptionHandling();
-        $this->putJson("/api/course/{$course->id}")
+        $this->putJson("/api/courses/{$course->id}")
             ->assertUnprocessable()
             ->assertJsonValidationErrors(['name']);
     }

@@ -20,21 +20,21 @@ class DemandTest extends TestCase
     public function testUserCanCreateNewDemand()
     {
         $demand = Demand::factory()->raw();
-        $this->postJson('/api/demand', $demand)->assertCreated();
+        $this->postJson('/api/demands', $demand)->assertCreated();
         $this->assertDatabaseHas('demands', ['title' => $demand['title']]);
     }
 
     public function testUserCanUpdateNewDemand()
     {
         $demand = $this->createDemand();
-        $this->patchJson('/api/demand/'. $demand->id, ['title' => $demand->title])->assertOk();
+        $this->patchJson('/api/demands/'. $demand->id, ['title' => $demand->title])->assertOk();
         $this->assertDatabaseHas('demands', ['title' => $demand->title]);
     }
 
     public function testUserCanDeleteNewDemand()
     {
         $demand = $this->createDemand();
-        $this->deleteJson('/api/demand/'. $demand->id)->assertNoContent();
+        $this->deleteJson('/api/demands/'. $demand->id)->assertNoContent();
         $this->assertDatabaseMissing('demands', ['title' => $demand->title]);
     }
 
@@ -42,7 +42,7 @@ class DemandTest extends TestCase
     {
         $demand = $this->createDemand(['user_id' => $this->user->id]);
         $this->createDemand();
-        $response = $this->getJson('/api/demand')->assertOk()->json();
+        $response = $this->getJson('/api/demands')->assertOk()->json();
         $this->assertEquals($response[0]['title'], $demand->title);
     }
 
@@ -50,7 +50,7 @@ class DemandTest extends TestCase
     {
         $demand = $this->createDemand(['user_id' => $this->user->id]);
         $this->createDemand();
-        $response = $this->getJson("/api/demand/{$demand->id}")->assertOk()->json();
+        $response = $this->getJson("/api/demands/{$demand->id}")->assertOk()->json();
         $this->assertEquals($response['title'], $demand->title);
     }
 }

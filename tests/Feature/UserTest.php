@@ -36,7 +36,7 @@ class UserTest extends TestCase
     {
         $subject = $this->createSubject(['user_id' => $this->user->id]);
         $this->createSubject();
-        $response = $this->getJson('/api/subject')->assertOk()->json();
+        $response = $this->getJson('/api/subjects')->assertOk()->json();
         $this->assertEquals($response[0]['name'], $subject->name);
     }
 
@@ -44,7 +44,7 @@ class UserTest extends TestCase
     {
         $course = $this->createCourse(['user_id' => $this->user->id]);
         $this->createCourse();
-        $response = $this->getJson('/api/course')->assertOk()->json();
+        $response = $this->getJson('/api/courses')->assertOk()->json();
         $this->assertEquals($response[0]['name'], $course->name);
     }
 
@@ -52,7 +52,7 @@ class UserTest extends TestCase
     {
         $subject = $this->createSubject(['user_id' => $this->user->id]);
         $this->createSubject();
-        $response = $this->getJson("/api/subject/{$subject->id}")->assertOk()->json();
+        $response = $this->getJson("/api/subjects/{$subject->id}")->assertOk()->json();
         $this->assertEquals($response['name'], $subject->name);
     }
 
@@ -60,7 +60,7 @@ class UserTest extends TestCase
     {
         $course = $this->createCourse(['user_id' => $this->user->id]);
         $this->createCourse();
-        $response = $this->getJson("/api/course/{$course->id}")->assertOk()->json();
+        $response = $this->getJson("/api/courses/{$course->id}")->assertOk()->json();
         $this->assertEquals($response['name'], $course->name);
     }
 }
