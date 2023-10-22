@@ -28,9 +28,7 @@ Route::middleware('auth:sanctum')->group(function ()
    Route::apiResource('/subject', SubjectController::class);
    Route::apiResource('/course', CourseController::class);
    Route::apiResource('/demand', DemandController::class);
-   Route::patch('/course/{id}/seats', [CourseController::class, 'updateSeats']);
 });
 
-
-Route::post('/user.register', RegisterController::class);
-Route::post('/user.login', LoginController::class);
+Route::post('/user/register', RegisterController::class);
+Route::post('/user/login', LoginController::class);

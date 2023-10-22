@@ -41,20 +41,15 @@ class CourseController extends Controller
             return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $course->update($request->validated());
-
-        return response()->json($course, Response::HTTP_OK);
-    }
-
-    public function updateSeats(CourseRequest $request, string $id): JsonResponse
-    {
-        $course = Course::find($id);
-
-        if (!$course) {
-            return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
+        if ($request->isMethod('put'))
+        {
+            $validatedData = $request->validated();
+            $course->update($validatedData);
+        } else
+        {
+            $course->update($request->all());
         }
 
-        $course->update($request->validated());
 
         return response()->json($course, Response::HTTP_OK);
     }

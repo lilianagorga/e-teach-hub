@@ -18,15 +18,13 @@ class CourseRequest extends FormRequest
      */
     public function rules(): array
     {
-        if(!$this->isMethod('patch'))
+        if($this->isMethod('put'))
             return [
                 'name' => 'required|string|max:255',
                 'seats' => 'required|integer|between:1,99',
                 'subject_id' => 'required|exists:subjects,id',
             ];
-        return [
-            'seats' => 'required|integer|between:1,99',
-        ];
+        return [];
     }
 
 }

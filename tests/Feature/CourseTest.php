@@ -136,17 +136,6 @@ class CourseTest extends TestCase
         $this->assertDatabaseMissing('courses', ['id' => $course->id]);
     }
 
-    public function testSeatsCanBeChanged()
-    {
-        $course = Course::factory()->create();
-        $newSeats = Course::factory()->make()->seats;
-
-        $response = $this->patch("/api/course/{$course->id}/seats", ['seats' => $newSeats]);
-
-        $response->assertOk();
-        $this->assertDatabaseHas('courses', ['id' => $course->id, 'seats' => $newSeats]);
-    }
-
     public function testWhileStoringCourseNameFieldIsRequired()
     {
         $this->withExceptionHandling();
@@ -161,21 +150,4 @@ class CourseTest extends TestCase
             ->assertUnprocessable()
             ->assertJsonValidationErrors(['name']);
     }
-
-    public function testValidationForUpdateSeats()
-    {
-        $course = $this->createCourse();
-        $this->withExceptionHandling();
-        $this->patchJson("/api/course/{$course->id}/seats", ['seats' => ''])->assertUnprocessable()
-            ->assertJsonValidationErrors(['seats']);
-
-        $this->patchJson("/api/course/{$course->id}/seats", ['seats' => 150])->assertUnprocessable()
-            ->assertJsonValidationErrors(['seats']);
-
-        $newSeats = 50;
-        $this->patchJson("/api/course/{$course->id}/seats", ['seats' => $newSeats])->assertOk()->json();
-    }
-
-
-
 }

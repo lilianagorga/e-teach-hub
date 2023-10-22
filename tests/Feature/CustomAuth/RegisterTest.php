@@ -11,7 +11,7 @@ class RegisterTest extends TestCase
 
     public function testAUserCanRegister()
     {
-        $this->postJson('/api/user.register',
+        $this->postJson('/api/user/register',
             ['name' => 'Liliana', 'email' => 'test@test.it', 'password' => 'secret123', 'password_confirmation' => 'secret123' ])
             ->assertCreated();
         $this->assertDatabaseHas('users', ['name' => 'Liliana']);
