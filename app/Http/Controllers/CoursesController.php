@@ -41,16 +41,17 @@ class CoursesController extends Controller
             return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
         }
 
-//        if ($request->isMethod('put')) {
-//            $validatedData = $request->validated();
-//            $course->update($validatedData);
-//        } else
-//        {
-//            $course->update($request->all());
-//        }
-
-        $course->update($request->validated());
-
+        if ($request->isMethod('put')) {
+            $validatedData = $request->validated();
+            $course->update($validatedData);
+        } else if ($request->isMethod('post'))
+        {
+            $validatedData = $request->validated();
+            $course->update($validatedData);
+        } else
+        {
+            $course->update($request->all());
+        }
 
         return response()->json($course, Response::HTTP_OK);
     }

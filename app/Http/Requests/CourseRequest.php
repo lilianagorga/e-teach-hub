@@ -18,20 +18,24 @@ class CourseRequest extends FormRequest
      */
     public function rules(): array
     {
-//        if($this->isMethod($this->post()))
-//            return [
-//                'name' => 'required|string|max:255',
-//                'seats' => 'required|integer|between:1,99',
-//                'subject_id' => 'required|exists:subjects,id',
-//            ];
-//        return [
-//            'name' => 'required|string|max:255',
-//        ];
-        return [
-            'name' => 'required|string|max:255',
-            'seats' => 'required|integer|between:1,99',
-            'subject_id' => 'required|exists:subjects,id',
-        ];
+        if ($this->isMethod('put'))
+        {
+            return [
+                'name' => 'required|string|max:255',
+                'seats' => 'required|integer|between:1,99',
+                'subject_id' => 'required|exists:subjects,id',
+            ];
+        } else if ($this->isMethod('post'))
+        {
+            return [
+                'name' => 'required|string|max:255',
+                'seats' => 'required|integer|between:1,99',
+                'subject_id' => 'required|exists:subjects,id',
+            ];
+        } else
+        {
+            return ['name' => 'required|string|max:255'];
+        }
     }
 
 }
