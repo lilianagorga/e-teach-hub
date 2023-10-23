@@ -36,20 +36,13 @@ class CoursesController extends Controller
     {
         $course = Course::find($id);
 
-        if (!$course)
-        {
+        if (!$course) {
             return response()->json(['message' => 'Course not found'], Response::HTTP_NOT_FOUND);
         }
-
         if ($request->isMethod('put')) {
             $validatedData = $request->validated();
             $course->update($validatedData);
-        } else if ($request->isMethod('post'))
-        {
-            $validatedData = $request->validated();
-            $course->update($validatedData);
-        } else
-        {
+        } else {
             $course->update($request->all());
         }
 

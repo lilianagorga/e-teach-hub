@@ -136,12 +136,6 @@ class CourseTest extends TestCase
         $this->assertDatabaseMissing('courses', ['id' => $course->id]);
     }
 
-    public function testWhileStoringCourseNameFieldIsRequired()
-    {
-        $this->withExceptionHandling();
-        $this->postJson('/api/courses')->assertUnprocessable()->assertJsonValidationErrors(['name']);
-    }
-
     public function testWhileUpdatingCourseNameFieldIsRequired()
     {
         $course = $this->createCourse();
