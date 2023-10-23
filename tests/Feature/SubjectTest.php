@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\SubjectsController;
 use App\Models\Subject;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -29,7 +29,7 @@ class SubjectTest extends TestCase
 
     public function test_check_if_subject_controller_exists()
     {
-        $this->assertTrue(class_exists(SubjectController::class));
+        $this->assertTrue(class_exists(SubjectsController::class));
     }
 
     public function test_check_if_subject_model_exists()

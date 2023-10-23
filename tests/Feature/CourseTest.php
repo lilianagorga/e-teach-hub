@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CoursesController;
 use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -28,7 +28,7 @@ class CourseTest extends TestCase
 
     public function test_check_if_course_controller_exists()
     {
-        $this->assertTrue(class_exists(CourseController::class));
+        $this->assertTrue(class_exists(CoursesController::class));
     }
 
     public function test_check_if_course_model_exists()

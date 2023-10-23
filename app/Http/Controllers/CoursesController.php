@@ -7,7 +7,7 @@ use App\Models\Course;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class CourseController extends Controller
+class CoursesController extends Controller
 {
     public function index(): JsonResponse
     {

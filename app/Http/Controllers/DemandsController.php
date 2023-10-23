@@ -7,7 +7,7 @@ use App\Models\Demand;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class DemandController extends Controller
+class DemandsController extends Controller
 {
     public function index(): JsonResponse
     {
