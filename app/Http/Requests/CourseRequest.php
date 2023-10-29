@@ -25,8 +25,16 @@ class CourseRequest extends FormRequest
                 'seats' => 'required|integer|between:1,99',
                 'subject_id' => 'required|exists:subjects,id',
             ];
+        } elseif (strtolower($this->method()) == 'patch')
+        {
+            return [
+                'name' => 'sometimes|required|string|max:255',
+                'seats' => 'sometimes|required|integer|between:1,99',
+                'subject_id' => 'sometimes|required|exists:subjects,id',
+            ];
+        } else
+        {
+            return [];
         }
-        return [];
     }
-
 }
