@@ -3,7 +3,6 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CoursesController;
-use App\Http\Controllers\DemandsController;
 use App\Http\Controllers\SubjectsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +26,6 @@ Route::middleware('auth:sanctum')->group(function ()
 {
    Route::apiResource('/subjects', SubjectsController::class);
    Route::apiResource('/courses', CoursesController::class);
-   Route::apiResource('/demands', DemandsController::class);
 });
 
 Route::post('/user/register', RegisterController::class);
