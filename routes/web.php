@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\UI\HomePageController;
+use App\Http\Controllers\UI\UserController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomePageController::class, 'index'])->name('index');
-
-Route::get('/subjects', function () {
-    return view('subjects');
-});
-Route::get('/courses', function () {
-    return view('courses');
-});
+Route::get('/subjects', [HomePageController::class, 'subjects'])->name('subjects');
+Route::get('/subjects/courses', [HomePageController::class, 'courses'])->name('courses');
+//Route::get('/subjects', function () {
+//    return view('subjects');
+//});
+//Route::get('/courses', function () {
+//    return view('courses');
+//});
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::post('/users', [UserController::class, 'store']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);

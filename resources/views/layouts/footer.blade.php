@@ -7,4 +7,5 @@
     <ul class="py-4 inline-block">
         <x-social-icon url="https://github.com/lilianagorga/e-teach-hub" faIcon="fa-brands fa-square-github" />
     </ul>
+    <x-flash-message />
 </div>
