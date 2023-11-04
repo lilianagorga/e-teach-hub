@@ -7,16 +7,15 @@ use App\Models\Subject;
 use App\Models\UI\Listing;
 use Illuminate\View\View;
 
-class HomePageController extends Controller
+class Dashboard extends Controller
 {
     public function index(): View {
-        return view('index', [
-            'subjects' => Subject::latest()->paginate(2)
-        ]);
+        $subjects = Subject::latest()->paginate(2);
+        return view('index', compact('subjects'));
     }
 
-    public function subjects(): View {
-        return view('subjects');
+    public function showSubject(Subject $subject): View {
+        return view('subjects', ['subject' => $subject]);
     }
 
     public function courses(): View {

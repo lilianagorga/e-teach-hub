@@ -9,7 +9,6 @@
               integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
               crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="//unpkg.com/alpinejs" defer></script>
-{{--        <script src="https://kit.fontawesome.com/49e07ab8ca.js" crossorigin="anonymous"></script>--}}
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>e-teach-hub</title>
     </head>

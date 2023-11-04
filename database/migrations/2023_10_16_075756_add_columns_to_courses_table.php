@@ -10,8 +10,11 @@ return new class extends Migration
     {
         Schema::table('courses', function (Blueprint $table) {
             $table->string('name');
-            $table->bigInteger('seats')->nullable();
-            $table->uuid('subject_id');
+            $table->bigInteger('seats')->default(0);
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     public function down(): void
@@ -19,7 +22,8 @@ return new class extends Migration
         Schema::table('courses', function (Blueprint $table) {
             $table->dropColumn('name');
             $table->dropColumn('seats');
-            $table->dropColumn('subject_id');
+            $table->dropForeign('subject_id');
+            $table->dropForeign('user_id');
         });
     }
 };

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UI\HomePageController;
+use App\Http\Controllers\UI\Dashboard;
 use App\Http\Controllers\UI\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,15 +14,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [HomePageController::class, 'index'])->name('index');
-Route::get('/subjects', [HomePageController::class, 'subjects'])->name('subjects');
-Route::get('/subjects/courses', [HomePageController::class, 'courses'])->name('courses');
-//Route::get('/subjects', function () {
-//    return view('subjects');
-//});
-//Route::get('/courses', function () {
-//    return view('courses');
-//});
+Route::get('/', [Dashboard::class, 'index'])->name('index');
+Route::get('/subjects/{subject}', [Dashboard::class, 'showSubject'])->name('showSubject');
+Route::get('/subjects/courses', [Dashboard::class, 'courses'])->name('courses');
+
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');

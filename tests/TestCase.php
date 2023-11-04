@@ -42,9 +42,4 @@ abstract class TestCase extends BaseTestCase
         return $user;
     }
 
-    public function createDemand($args = [])
-    {
-        return Demand::factory()->create($args);
-    }
-
 }
