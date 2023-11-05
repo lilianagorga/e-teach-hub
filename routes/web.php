@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [Dashboard::class, 'index'])->name('index');
-Route::get('/subjects/{subject}', [Dashboard::class, 'showSubject'])->name('showSubject');
-Route::get('/subjects/courses', [Dashboard::class, 'courses'])->name('courses');
+
+Route::get('/subjects', [Dashboard::class, 'showSubjects'])->name('showSubjects');
+Route::get('/courses', [Dashboard::class, 'showCourses'])->name('showCourses');
+
+Route::get('/subjects/{subject}', [Dashboard::class, 'showSingleSubject'])->name('showSingleSubject');
+Route::get('/subjects/{subject}/courses', [Dashboard::class, 'showCoursesForSingleSubject'])->name('showCoursesForSingleSubject');
+
+Route::get('/courses/{course}', [Dashboard::class, 'showSingleCourse'])->name('showSingleCourse');
 
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);

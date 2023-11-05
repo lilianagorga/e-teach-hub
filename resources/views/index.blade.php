@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @include('users.login')
 @include('users.register')
-@include('partials._hero')
-@include('partials._search')
 @section('content')
     <!DOCTYPE html>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -15,18 +13,6 @@
         </head>
         <body>
             <h1 class="text-left font-bold bg-stone-300 text-stone-700 uppercase pl-48 pr-12 py-3.5">Home</h1>
-            <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
-                @unless(count($subjects) == 0)
-                    @foreach($subjects as $subject)
-                        <x-subject :subject="$subject"/>
-                    @endforeach
-                @else
-                    <p>No subjects found</p>
-                @endunless
-            </div>
-            <div class="mt-6 p-4">
-                {{ $subjects->links() }}
-            </div>
         </body>
     </html>
 @endsection

@@ -24,10 +24,6 @@ class Course extends Model
              'user_id',
         ];
 
-//    public function course(): BelongsTo
-//    {
-//        return $this->belongsTo(Course::class, 'subject_id');
-//    }
       public function subject(): BelongsTo {
           return $this->belongsTo(Subject::class);
       }

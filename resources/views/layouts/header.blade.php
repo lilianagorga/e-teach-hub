@@ -1,15 +1,12 @@
 <nav class="bg-stone-400 border-gray-200 px-2 sm:px-4 py-2.5 rounded">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-                <a href="{{ route('index') }}" class="flex items-center">
-                    <x-application-icon iconType="house"/>
-                </a>
         <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">
             <x-application-icon iconType="house"/>
         </a>
         <a href="/subjects" class="{{ request()->is('/') ? 'active' : '' }}">
             <x-application-icon iconType="graduation-cap"/>
         </a>
-        <a href="/subjects/courses" class="{{ request()->is('/') ? 'active' : '' }}">
+        <a href="/courses" class="{{ request()->is('/') ? 'active' : '' }}">
             <x-application-icon iconType="laptop-code"/>
         </a>
         @auth
