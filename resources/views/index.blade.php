@@ -1,6 +1,4 @@
 @extends('layouts.app')
-@include('users.login')
-@include('users.register')
 @section('content')
     <!DOCTYPE html>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -12,7 +10,9 @@
             <title>e-teach-hub</title>
         </head>
         <body>
-            <h1 class="text-left font-bold bg-stone-300 text-stone-700 uppercase pl-48 pr-12 py-3.5">Home</h1>
         </body>
     </html>
+@include('users.login')
+@include('users.register')
 @endsection
+

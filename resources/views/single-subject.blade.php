@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="card">
+    <div class="single-card">
         <div class="container flex flex-wrap justify-between items-center mx-auto card-body">
             <x-single-subject :subject="$subject" />
             <div class="py-5">

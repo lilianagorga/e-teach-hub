@@ -15,12 +15,12 @@ class Dashboard extends Controller
     }
 
     public function showSubjects(): View {
-        $subjects = Subject::latest()->paginate(2);
+        $subjects = Subject::query()->paginate(2);
         return view('subjects', compact('subjects'));
     }
 
     public function showCourses(): View {
-        $courses = Course::latest()->paginate(2);
+        $courses = Course::query()->paginate(2);
         return view('courses', compact('courses'));
     }
 

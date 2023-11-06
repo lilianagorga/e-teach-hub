@@ -1,10 +1,12 @@
-<section class="relative h-72 bg-laravel flex flex-col justify-center align-center text-center space-y-4 mb-4">
-    <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-no-repeat bg-center">
-        <img src="{{ asset('images/courses.png') }}" alt=""/>
+<section class="relative h-72 flex flex-row items-center justify-center text-center space-y-4 mb-4">
+    <div class="absolute left-0 px-24">
+        <img src="{{ asset('storage/subjects.png') }}" alt="subjects"/>
     </div>
-
-    <div class="z-10">
-        <h1 class="text-6xl font-bold uppercase text-white">e-teach-hub</h1>
-        <p class="text-2xl text-gray-200 font-bold my-4">Find your subject</p>
+    <div class="z-10 font-nunito font-bold">
+        <h1 class="text-6xl text-stone-700 py-14 mt-6">Welcome into our teach world</h1>
+        <p class="text-2xl text-stone-700 my-4">Find your subject</p>
+    </div>
+    <div class="absolute right-0 px-24">
+        <img src="{{ asset('storage/courses.png') }}" alt="courses"/>
     </div>
 </section>
