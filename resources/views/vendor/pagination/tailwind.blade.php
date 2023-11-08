@@ -22,24 +22,24 @@
             @endif
         </div>
 
-        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+        <div class=" sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
-                <p class="text-sm text-stone-700 leading-5 hidden">
+                <p class="text-sm text-stone-700 leading-5 min-[950px]:hidden font-bold font-nunito pl-40 pr-30 min-[600px]:max-[800px]:pl-20 max-[600px]:pl-4">
                     {!! __('Showing') !!}
                     @if ($paginator->firstItem())
-                        <span class="font-medium">{{ $paginator->firstItem() }}</span>
+                        <span class="">{{ $paginator->firstItem() }}</span>
                         {!! __('to') !!}
-                        <span class="font-medium">{{ $paginator->lastItem() }}</span>
+                        <span class="">{{ $paginator->lastItem() }}</span>
                     @else
                         {{ $paginator->count() }}
                     @endif
                     {!! __('of') !!}
-                    <span class="font-medium">{{ $paginator->total() }}</span>
+                    <span class="">{{ $paginator->total() }}</span>
                     {!! __('results') !!}
                 </p>
             </div>
 
-            <div>
+            <div class="max-[950px]:hidden md:max-2xl:pl-10">
                 <span class="relative z-0 inline-flex shadow-sm rounded-md">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())

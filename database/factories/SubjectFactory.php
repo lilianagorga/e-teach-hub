@@ -19,7 +19,7 @@ class SubjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
+            'name' => '',
             'user_id' => function()
             {
                 return User::factory()->create()->id;

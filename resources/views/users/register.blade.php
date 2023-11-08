@@ -1,4 +1,6 @@
-<form method="POST" action="/users">
+@extends('layouts.app')
+@section('content')
+  <form method="POST" action="/users">
     @csrf
     <div class="mb-6 px-4 rounded">
       <label for="name" class="inline-block text-lg text-stone-700 mb-2 font-nunito font-bold">Name</label>
@@ -42,3 +44,5 @@
       </p>
     </div>
   </form>
+@endsection
+
