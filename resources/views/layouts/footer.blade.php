@@ -1,7 +1,7 @@
 <div class="text-center pt-20 sm:pt-10">
-    <p class="font-nunito font-bold text-stone-700 inline-block">
+    <p class="font font-bold text-dark inline-block">
         TEACH HUB created by
-        <a href="https://github.com/lilianagorga" class="text-stone-700 transition-all hover:text-cyan-800 font-nunito font-bold" target="_blank">Liliana</a>
+        <a href="https://github.com/lilianagorga" class="text-dark transition-all hover-color font font-bold" target="_blank">Liliana</a>
     </p>
 
     <ul class="py-4 inline-block">

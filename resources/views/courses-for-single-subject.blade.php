@@ -8,7 +8,7 @@
           @endforeach
       </div>
         @else
-          <div class="card mt-20 lg-grid lg:grid-cols-1 text-center rounded font-bold font-nunito uppercase text-stone-700">
+          <div class="card mt-20 lg-grid lg:grid-cols-1 text-center rounded font-bold font uppercase text-dark">
             <p class="px-10 py-8">Seems there are no courses for this subject.</p>
             <p class="px-10 pb-4">Hurry up to search other amazing courses in our teach hub</p>
           </div>

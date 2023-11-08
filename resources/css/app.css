@@ -14,3 +14,114 @@ body {
 li {
   @apply list-none
 }
+
+.text-show {
+  @apply text-2xl max-[1024px]:text-xl text-stone-700;
+}
+
+.text-color {
+  @apply text-cyan-800;
+}
+
+.text-dark {
+  @apply text-stone-700;
+}
+
+.text-medium {
+  @apply text-stone-500;
+}
+
+.text-light {
+  @apply text-stone-300;
+}
+
+.hover-color {
+  @apply hover:text-cyan-800;
+}
+
+.hover-dark {
+  @apply hover:text-stone-700;
+}
+
+.hover-medium {
+  @apply hover:text-stone-500;
+}
+
+.hover-light {
+  @apply hover:text-stone-300;
+}
+
+.active-dark {
+  @apply active:text-stone-700;
+}
+
+.ring-light {
+  @apply ring-stone-300
+}
+
+.active-medium {
+  @apply active:text-stone-500;
+}
+
+.text-sizes {
+  @apply text-4xl md:max-lg:text-3xl lg:max-xl:text-4xl;
+}
+
+.placeholder {
+  @apply placeholder:text-stone-700;
+}
+
+.font {
+  @apply font-nunito;
+}
+
+.bg-dark {
+  @apply bg-stone-700;
+}
+
+.bg-medium {
+  @apply bg-stone-400;
+}
+
+.bg-light {
+  @apply bg-stone-300;
+}
+
+.bg-extra-light {
+  @apply bg-stone-100;
+}
+
+.active-bg-light {
+  @apply active:bg-stone-300;
+}
+
+.active-bg-dark {
+  @apply active:bg-stone-700;
+}
+
+.hover-bg-light {
+  @apply hover:bg-stone-400;
+}
+
+.hover-bg-extra-light {
+  @apply hover:bg-stone-100;
+}
+
+.border-light {
+  @apply border-stone-300;
+}
+
+.border-medium {
+  @apply border-stone-400;
+}
+
+.focus-border-light {
+  @apply focus:border-stone-300;
+}
+
+.users {
+  @apply hover-color text-dark font font-bold;
+}
+
+
+
