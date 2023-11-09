@@ -8,21 +8,31 @@
     <div class="font font-bold text-dark px-10 min-[500px]:max-[768px]:px-4 my-10">
       @if ($subject->id === 1)
         <p>
-          Il Web Development, noto anche come sviluppo web, è una disciplina affascinante che si occupa di progettazione,
-          sviluppo e manutenzione di applicazioni web. Questa materia gioca un ruolo fondamentale nella creazione di tutto
-          ciò che vediamo e utilizziamo online. Dal semplice sito web informativo alle complesse piattaforme di e-commerce,
-          il web development è ciò che consente ai contenuti di essere accessibili in tutto il mondo tramite Internet.
-          Una delle ragioni principali per appassionarsi al web development è il suo costante evolversi. Nel mondo digitale
-          in rapida crescita, le tecnologie web si evolvono costantemente, creando infinite opportunità di apprendimento
-          e innovazione.
+          Web Development is a fascinating discipline that deals with the design, development, and maintenance of web
+          applications. This field plays a crucial role in creating everything we see and use online. From simple
+          informative websites to complex e-commerce platforms, web development enables content to be accessible worldwide
+          through the Internet. One of the primary reasons to be passionate about web development is its constant evolution.
+          In the rapidly growing digital world, web technologies are constantly evolving, creating endless opportunities
+          for learning and innovation..
+        </p>
+        <p>
+          The opportunity to contribute to the evolution of the Internet is a compelling reason for aspiring web developers.
+          Every website they create represents a new contribution to the online ecosystem, which can positively impact
+          people's lives, businesses, and access to information. For instance, web application development can make
+          online booking services more convenient and accessible or create e-learning platforms for distance education.
         </p>
       @else
         <p>
-          La possibilità di contribuire all'evoluzione di Internet è un motivo di grande interesse per
-          gli aspiranti web developer. Ogni sito web che creano rappresenta un nuovo contributo all'ecosistema online che
-          può influenzare positivamente la vita delle persone, le imprese e l'accesso alle informazioni. Ad esempio, lo
-          sviluppo di applicazioni web può rendere i servizi di prenotazione online più facili e accessibili o creare
-          piattaforme di e-learning per l'istruzione a distanza.
+          Yoga is an ancient practice that offers numerous benefits for both the body and the mind. While web programming
+          may require long hours of mental work and focus, yoga provides an opportunity for rejuvenation. Its combination
+          of postures, breathing, and meditation helps relax the mind, reduce stress, and enhance body flexibility. This
+          practice can alleviate muscle tension caused by extended web development sessions and improve posture. Moreover,
+          it promotes overall well-being, boosts energy levels, and enhances concentration.
+        </p>
+        <p>
+          In our school, we offer two different yoga disciplines: Hatha Yoga and Ashtanga Yoga. Hatha Yoga is slower and
+          aims to enhance flexibility and mental tranquility through static postures. Ashtanga Yoga is more dynamic,
+          focusing on strength and breath control during movement.
         </p>
       @endif
     </div>

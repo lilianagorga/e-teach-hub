@@ -6,24 +6,36 @@
     <div class="font font-bold text-dark px-10 min-[500px]:max-[768px]:px-4 my-10">
       @if ($course->id === 1)
         <p>
-          Il frontend è la parte visibile di un'applicazione o di un sito web con cui gli utenti interagiscono direttamente.
-          È responsabile dell'aspetto e del comportamento dell'interfaccia utente, comprese le pagine web, i bottoni, i menu
-          e i form. Il frontend coinvolge l'uso di tecnologie come HTML, CSS e JavaScript per creare layout accattivanti e interattivi.
+          Frontend is the visible part of an application or website with which users directly interact. It's responsible
+          for the look and behavior of the user interface, including web pages, buttons, menus, and forms. Frontend
+          involves the use of technologies like HTML, CSS, and JavaScript to create appealing and interactive layouts.
         </p>
         <p>
-          Gli sviluppatori frontend lavorano per migliorare l'esperienza dell'utente, ottimizzando la navigazione e garantendo
-          che tutto funzioni in modo fluido. È un campo in continua evoluzione, con sempre nuove tecnologie e tendenze da esplorare.
+          Frontend developers work to enhance user experience, optimizing navigation and ensuring smooth functionality.
+          It's a continuously evolving field with ever-new technologies and trends to explore.
+        </p>
+      @elseif($course->id === 2)
+        <p>
+          The 'backend' is the brain behind a web application. It's the invisible part that handles data, processing
+          and system logic. Backend developers create and maintain servers, databases, and server-side applications that
+          power the entire website. They work with programming languages like Python, Ruby, PHP, and JavaScript to create
+          APIs and web services that provide data to the frontend. Without a robust backend, the frontend wouldn't function.
+        </p>
+        <p>
+          Backend developers play a crucial role in ensuring that an application is secure, fast, and efficient. It's a
+          growing field with an increasing demand for skilled professionals."
+        </p>
+      @elseif($course->id === 3)
+        <p>
+          Hatha yoga is one of the most popular branches of yoga, focusing on physical postures (asana) and breathing
+          (pranayama). This practice helps improve strength, flexibility, and relax the mind. It's ideal for those
+          seeking a path to balance between body and spirit through the connection between breath and movement.
         </p>
       @else
         <p>
-          Il "backend" è il cervello di un'applicazione web. È la parte invisibile che gestisce i dati, le elaborazioni e
-          la logica del sistema. I backend developers creano e mantengono server, database e applicazioni lato server che
-          alimentano l'intero sito web. Lavorano con linguaggi di programmazione come Python, Ruby, PHP e JavaScript per
-          creare API e servizi web che forniscono dati al frontend. Senza un backend robusto, il frontend non potrebbe funzionare.
-        </p>
-        <p>
-          Gli sviluppatori di backend svolgono un ruolo fondamentale nell'assicurare che un'applicazione sia sicura,
-          veloce ed efficiente. È un campo in costante crescita con una crescente domanda di professionisti esperti.
+          Ashtanga yoga is a dynamic and rigorous style that involves a specific sequence of postures and breathing.
+          This practice aims to improve strength, endurance, and concentration. It's ideal for those seeking a
+          challenging physical routine and moving meditation for mental and physical harmony.
         </p>
       @endif
     </div>
