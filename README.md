@@ -24,9 +24,25 @@ Please feel free to let me know if any further refinements or adjustments are ne
 We welcome contributions to make this app even better. If you'd like to contribute, follow these steps:
 
 * Fork the project.
-* Create your feature branch: `git checkout -b feature-name`.
-* Commit your changes: `git commit -m 'Description of the feature'`.
-* Push to the branch: `git push origin feature-name`.
+
+* Create your feature branch: 
+
+  ```bash
+  git checkout -b feature-name
+  ```
+
+* Commit your changes: 
+
+  ```bash
+  git commit -m 'Description of the feature'
+  ```
+
+* Push to the branch: 
+
+  ```bash
+  git push origin feature-name
+  ````
+
 * Open a pull request.
 
 ## Follow these steps to try the REST API in local
@@ -123,17 +139,36 @@ We welcome contributions to make this app even better. If you'd like to contribu
 -   **GET** /courses/{course}
 -   **GET** /register
 -   **GET** /login
--   **POST** /users
 -   **POST** /logout
+-   **POST** /users
 -   **POST** /users/authenticate
 
 > **Notes**
 > Check on the headers tab **Content/type** application/json.
 > Add a new header **Accept** application/json.
 
-### Filter
 
-* You can filter CRUD of these routes `/api/courses` by name, seats and subject_id.
+### Filtering Courses
+
+* The `courses` API route supports filtering based on different parameters. To filter courses, you can make a GET request
+to the `/courses` endpoint with the following query parameters:
+
+  * `subject`: Filter courses by subject. For example:
+    ```plaintext
+    /courses?subject=development
+  
+  * name: Filter courses by name. For example: 
+    ```plaintext
+    /courses?name=frontend
+  * seats: Filter courses by the number of seats available. For example:
+    ```plaintext
+    /courses?seats=20
+  * You can also combine multiple filters in a single request. For instance:
+    ```plaintext
+    /courses?subject=development&name=frontend&seats=20
+    
+* This will return a JSON response with the filtered courses that match the specified criteria.
+
 
 ## License
 
