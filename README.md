@@ -1,66 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Overview
+e-Teach-Hub is a full-stack API project designed as a part of my portfolio. This API has been developed using the Laravel framework and encompasses two distinct subjects, "Yoga" and "Development." Each subject comprises two courses. Within the "Development" branch, you'll find the "Frontend" and "Backend" courses, while the "Yoga" branch features "Hatha Yoga" and "Ashtanga Yoga" courses.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+In the backend, I adopted a Test-Driven Development (TDD) approach, creating feature tests to ensure the availability of CRUD operations for subjects, courses, and users. All backend routes are of the "api" type and utilize the "Sanctum" package for authentication. It's important to note that there are two .env files, one for the local environment and another for the testing environment, .env.testing.
 
-## About Laravel
+On the frontend, the routes are of the "web" type. I utilized Vite and Tailwind CSS to craft the frontend, providing a highly efficient solution for user interface development.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project has been designed to offer a welcoming and stimulating learning environment where web development enthusiasts can enhance their skills and rejuvenate through yoga sessions. Our aim is to provide up-to-date training on the latest industry trends, offering a range of subjects to choose from.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Please feel free to let me know if any further refinements or adjustments are needed.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+* Laravel
+* laravel/sanctum
+* Vite
+* Tailwindcss
+* postcss
+* laravel-vite-plugin
+* Alpinejs
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+We welcome contributions to make this app even better. If you'd like to contribute, follow these steps:
 
-## Code of Conduct
+* Fork the project.
+* Create your feature branch: `git checkout -b feature-name`.
+* Commit your changes: `git commit -m 'Description of the feature'`.
+* Push to the branch: `git push origin feature-name`.
+* Open a pull request.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Follow these steps to try the REST API in local
 
-## Security Vulnerabilities
+### Run the following command to clone the repository:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  `git clone https://github.com/lilianagorga/e-teach-hub.git`
+
+### Install Dependencies 
+
+* Once the repository is cloned, navigate to the project folder: `cd e-teach-hub`
+
+  `composer install`
+  `npm install`
+
+* Run Vite to build the frontend assets: `npm run dev`
+  * This will compile and optimize the frontend assets. 
+
+### Database Setup
+
+* Create an empty database on your local MySQL server using tools such as MySQL Workbench, phpMyAdmin.
+* Run the database migrations with `php artisan migrate`.
+* Seed the database with test data using `php artisan db:seed`.
+
+#### Testing Database Setup (For `.env.testing`)
+
+If you're setting up the testing database, make sure to configure the `.env.testing` file with the appropriate database settings. Then, follow these steps:
+
+* Run the database migrations for testing using `php artisan migrate --env=testing`.
+* Seed the testing database with test data using `php artisan db:seed --env=testing`.
+
+* You are now ready to use the e-teach-hub API on your local environment.
+
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This API is licensed under the [MIT license](https://opensource.org/licenses/MIT).
