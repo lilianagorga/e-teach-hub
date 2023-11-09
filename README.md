@@ -31,35 +31,109 @@ We welcome contributions to make this app even better. If you'd like to contribu
 
 ## Follow these steps to try the REST API in local
 
-### Run the following command to clone the repository:
 
-  `git clone https://github.com/lilianagorga/e-teach-hub.git`
+1. Run the following command to clone the repository:
 
-### Install Dependencies 
+    ```bash
+    git clone https://github.com/lilianagorga/e-teach-hub.git
+    ```
 
-* Once the repository is cloned, navigate to the project folder: `cd e-teach-hub`
+2. Once the repository is cloned, navigate to the project folder:
 
-  `composer install`
-  `npm install`
+    ```bash
+    cd e-teach-hub
+    ```
+3. Install composer dependencies:
 
-* Run Vite to build the frontend assets: `npm run dev`
-  * This will compile and optimize the frontend assets. 
+   ```bash
+   composer install
+   ```
 
-### Database Setup
+4. Install NPM Dependencies:
 
-* Create an empty database on your local MySQL server using tools such as MySQL Workbench, phpMyAdmin.
-* Run the database migrations with `php artisan migrate`.
-* Seed the database with test data using `php artisan db:seed`.
+    ```bash
+    npm install
+    ```
+5. Run Vite to build the frontend assets:
+    
+    ```bash
+    npm run dev
+    ```
 
-#### Testing Database Setup (For `.env.testing`)
+   * This will compile and optimize the frontend assets. 
 
-If you're setting up the testing database, make sure to configure the `.env.testing` file with the appropriate database settings. Then, follow these steps:
+6. Database Setup:
 
-* Run the database migrations for testing using `php artisan migrate --env=testing`.
-* Seed the testing database with test data using `php artisan db:seed --env=testing`.
+   * Create an empty database on your local MySQL server using tools such as MySQL Workbench, phpMyAdmin.
+   * Run the database migrations with :
+   
+    ```bash
+    php artisan migrate
+    ```
+   * Seed the database with test data using :
+   
+    ```bash
+    php artisan db:seed
+    ```
 
-* You are now ready to use the e-teach-hub API on your local environment.
+7. Database Setup for testing: 
 
+   * If you're setting up the testing database, make sure to configure the `.env.testing` file with the appropriate database settings. Then, follow these steps:
+
+   * Run the database migrations for testing using:
+    
+    ```bash
+    php artisan migrate --env=testing
+    ```
+    
+   * Seed the testing database with test data using:
+    
+    ```bash
+    php artisan db:seed --env=testing
+    ```
+
+8. Start the local development server:
+  
+    ```bash
+    php artisan serve
+    ```
+
+9. You are now ready to use the e-teach-hub API on your local environment: http://localhost:8000
+
+## Usage 
+* Recommended tool to try the requests. [Postman](https://www.postman.com/)
+
+* REST API endpoints:
+
+### Routes API
+
+-   **RESOURCE** /api/subjects
+-   **RESOURCE** /api/courses
+-   **POST** /api/user/register
+-   **POST** /api/user/login
+
+
+### Routes Web
+
+-   **GET** /
+-   **GET** /subjects
+-   **GET** /courses
+-   **GET** /subjects/{subject}
+-   **GET** /subjects/{subject}/courses
+-   **GET** /courses/{course}
+-   **GET** /register
+-   **GET** /login
+-   **POST** /users
+-   **POST** /logout
+-   **POST** /users/authenticate
+
+> **Notes**
+> Check on the headers tab **Content/type** application/json.
+> Add a new header **Accept** application/json.
+
+### Filter
+
+* You can filter CRUD of these routes `/api/courses` by name, seats and subject_id.
 
 ## License
 
