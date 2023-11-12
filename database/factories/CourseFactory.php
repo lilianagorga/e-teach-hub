@@ -18,7 +18,7 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => '',
+            'name' => $this->faker->word,
             'seats' => $this->faker->unique()->numberBetween(1, 99),
             'subject_id' => Subject::factory(),
             'user_id' => function()
