@@ -2,7 +2,7 @@
 @section('content')
 @include('partials._hero-subjects')
 @include('partials._search-subjects')
-  <div class="grid lg:grid-cols-4 max-[1024px]:gap-2 gap-4 mx-4 justify-items-center uppercase font font-bold">
+<div class="grid {{ count($subjects) > 0 ? 'lg:grid-cols-4 max-[1024px]:gap-2 gap-4' : 'grid-cols-1' }} mx-4 justify-items-center uppercase font font-bold">
       @unless(count($subjects) == 0)
           @foreach($subjects as $subject)
               <x-subjects :subject="$subject"/>

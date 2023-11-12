@@ -2,7 +2,7 @@
 @section('content')
 @include('partials._hero-courses')
 @include('partials._search-courses')
-  <div class="grid lg:grid-cols-4 max-[1024px]:gap-2 gap-4 mx-4 justify-items-center uppercase font font-bold">
+  <div class="grid {{ count($courses) > 0 ? 'lg:grid-cols-4 max-[1024px]:gap-2 gap-4' : 'grid-cols-1' }} mx-4 justify-items-center uppercase font font-bold">
       @unless(count($courses) == 0)
           @foreach($courses as $course)
               <x-courses :course="$course"/>

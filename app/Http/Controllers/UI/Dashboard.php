@@ -5,7 +5,7 @@ namespace App\Http\Controllers\UI;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Subject;
-use App\Models\UI\Listing;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class Dashboard extends Controller
@@ -14,13 +14,30 @@ class Dashboard extends Controller
         return view('index');
     }
 
-    public function showSubjects(): View {
-        $subjects = Subject::query()->paginate(4);
-        return view('subjects', compact('subjects'));
+    public function showSubjects(Request $request): View {
+      $subjectName = $request->input('search');
+
+      $query = Subject::query();
+
+      if ($subjectName) {
+        $query->where('name', 'like', '%' . $subjectName . '%');
+      }
+
+      $subjects = $query->paginate(4);
+
+      return view('subjects', compact('subjects'));
     }
 
-    public function showCourses(): View {
-        $courses = Course::query()->paginate(4);
+    public function showCourses(Request $request): View {
+      $courseName = $request->input('search');
+
+      $query = Course::query();
+
+      if ($courseName) {
+        $query->where('name', 'like', '%' . $courseName . '%');
+      }
+
+      $courses = $query->paginate(4);
         return view('courses', compact('courses'));
     }
 
