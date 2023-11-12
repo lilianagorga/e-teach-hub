@@ -2,8 +2,7 @@
 @section('content')
 @include('partials._hero-courses')
 @include('partials._search-courses')
-  <div class="grid max-[1024px]:grid-cols-1 max-[1024px]:gap-2 gap-4 space-y-4 max-[1024px]:space-y-0
-  mx-4 justify-items-center uppercase font font-bold">
+  <div class="grid lg:grid-cols-4 max-[1024px]:gap-2 gap-4 mx-4 justify-items-center uppercase font font-bold">
       @unless(count($courses) == 0)
           @foreach($courses as $course)
               <x-courses :course="$course"/>
@@ -12,7 +11,7 @@
           <p class="grid-cols-1">No courses found</p>
       @endunless
   </div>
-  <div class="mt-6 p-4 text-dark bg-medium rounded border-2 m-4">
+  <div class="p-4 text-dark bg-medium rounded border-2 m-6">
       {{ $courses->links() }}
   </div>
 @endsection

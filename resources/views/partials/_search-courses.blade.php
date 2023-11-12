@@ -1,5 +1,5 @@
 <form action="/courses">
-    <div class="relative border-2 card m-4 rounded-lg">
+    <div class="relative border-2 card m-6 rounded-lg">
         <div class="absolute top-4 left-3">
             <i class="fa fa-search text-dark z-20 hover-light"></i>
         </div>
