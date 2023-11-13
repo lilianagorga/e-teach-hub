@@ -78,12 +78,14 @@ class SubjectTest extends TestCase
         $subject = Subject::factory()->make();
         $response = $this->post('/api/subjects', [
             'name' => $subject->name,
+            'description' => $subject->description,
             'user_id' => $user->id
         ])->assertCreated();
         $this->assertEquals($subject->name, $response['name']);
         $this->assertDatabaseHas('subjects',
             [
                 'name' => $subject->name,
+                'description' => $subject->description,
                 'user_id' => $user->id
             ]);
     }

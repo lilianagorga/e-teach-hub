@@ -52,9 +52,10 @@ class CourseTest extends TestCase
         $this->assertDatabaseHas('courses', [
             'id' => $course->id,
             'name' => $course->name,
+            'content' => $course->content,
             'subject_id' => $subject->id
         ]);
-        $this->assertEquals('', $course->name);
+        $this->assertEquals($course->name, $course['name']);
         $this->assertEquals($subject->id, $course->subject_id);
     }
 
@@ -88,10 +89,12 @@ class CourseTest extends TestCase
     public function testStoreCourse()
     {
         $user = $this->authUser();
+        $course = Course::factory()->make();
         $subject = $this->createSubject();
         $courseData = [
-            'name' => 'New Course Name',
+            'name' => $course->name,
             'seats' => 30,
+            'content' => $course->content,
             'subject_id' => $subject->id,
             'user_id' => $user->id
         ];
