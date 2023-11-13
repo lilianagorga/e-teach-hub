@@ -5,15 +5,18 @@
       </a>
     </div>
     <div class="font-medium text-color">
-      @if($course->id === 1)
-        <p>Studiare frontend development ti consente di rimanere al passo con le ultime tendenze tecnologiche e
-          contribuire a progetti significativi. Questa competenza apre porte a opportunità soddisfacenti e gratificanti.
-        </p>
-      @else
-        <p>
-          Imparando il backend development, avrai la possibilità di progettare soluzioni tecniche sofisticate e
-          contribuire a garantire l'affidabilità e la sicurezza dei servizi online.
-        </p>
-      @endif
+      <p>"the page shows up"</p>
+{{--      <p>{{ $course->content }}</p>--}}
+
+{{--      @if($course->id === 1)--}}
+{{--        <p>Studiare frontend development ti consente di rimanere al passo con le ultime tendenze tecnologiche e--}}
+{{--          contribuire a progetti significativi. Questa competenza apre porte a opportunità soddisfacenti e gratificanti.--}}
+{{--        </p>--}}
+{{--      @else--}}
+{{--        <p>--}}
+{{--          Imparando il backend development, avrai la possibilità di progettare soluzioni tecniche sofisticate e--}}
+{{--          contribuire a garantire l'affidabilità e la sicurezza dei servizi online.--}}
+{{--        </p>--}}
+{{--      @endif--}}
     </div>
 </div>

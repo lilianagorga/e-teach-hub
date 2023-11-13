@@ -13,20 +13,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Subject extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable =
-        [
-            'name',
-            'user_id',
-        ];
+  protected $fillable =
+    [
+      'name',
+      'user_id',
+      'description',
+    ];
 
-      public function courses(): HasMany {
-          return $this->hasMany(Course::class);
-      }
+    public function courses(): HasMany {
+      return $this->hasMany(Course::class);
+    }
 
-      public function user(): BelongsTo {
-          return $this->belongsTo(User::class);
-      }
+    public function user(): BelongsTo {
+      return $this->belongsTo(User::class);
+    }
 
 }

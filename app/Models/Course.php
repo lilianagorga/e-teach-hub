@@ -14,21 +14,22 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Course extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable =
-        [
-            'name',
-            'seats',
-            'subject_id',
-             'user_id',
-        ];
+  protected $fillable =
+    [
+      'name',
+      'seats',
+      'subject_id',
+      'user_id',
+      'content',
+    ];
 
-      public function subject(): BelongsTo {
-          return $this->belongsTo(Subject::class);
-      }
-
-    public function user(): BelongsTo {
-        return $this->belongsTo(User::class);
+    public function subject(): BelongsTo {
+      return $this->belongsTo(Subject::class);
     }
+
+  public function user(): BelongsTo {
+    return $this->belongsTo(User::class);
+  }
 }
