@@ -2,20 +2,31 @@
 
 namespace Database\Seeders;
 
-use App\Models\Course;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Models\Subject;
 use Illuminate\Database\Seeder;
 use Database\Factories\CourseFactory;
+use Database\Factories\SubjectFactory;
 
 class CourseSeeder extends Seeder
 {
     public function run(): void
     {
-      CourseFactory::new()->withDetails("Frontend", $this->getContent('Frontend'))->create();
-      CourseFactory::new()->withDetails("Backend", $this->getContent('Backend'))->create();
-      CourseFactory::new()->withDetails("Hatha Yoga", $this->getContent('Hatha Yoga'))->create();
-      CourseFactory::new()->withDetails("Ashtanga Yoga", $this->getContent('Ashtanga Yoga'))->create();
-      Course::factory()->count(18)->create();
+      $user = User::factory()->create();
+
+      $subjectFactory = new SubjectFactory();
+      $codingSubject = $subjectFactory->getOrCreateSubject('Coding', $subjectFactory->getDescription('Coding'), $user->id);
+      $yogaSubject = $subjectFactory->getOrCreateSubject('Yoga', $subjectFactory->getDescription('Yoga'), $user->id);
+
+      CourseFactory::new()->withDetails($codingSubject['id'], $user->id, "Frontend", $this->getContent('Frontend'))->create();
+      CourseFactory::new()->withDetails($codingSubject['id'], $user->id, "Backend", $this->getContent('Backend'))->create();
+      CourseFactory::new()->withDetails($yogaSubject['id'], $user->id, "Hatha Yoga", $this->getContent('Hatha Yoga'))->create();
+      CourseFactory::new()->withDetails($yogaSubject['id'], $user->id, "Ashtanga Yoga", $this->getContent('Ashtanga Yoga'))->create();
+
+      for ($i = 0; $i < 18; $i++) {
+        $subject = Subject::factory()->create(['user_id' => $user->id]);
+        CourseFactory::new()->withDetails($subject->id, $user->id)->create();
+      }
     }
 
     public function getContent(?string $name = null): string | null

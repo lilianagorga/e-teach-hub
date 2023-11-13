@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -17,17 +16,25 @@ class SubjectFactory extends Factory
      * @return array<string, mixed>
      */
 
-  public function definition(?string $name = null, ?string $description = null): array
+  public function definition(): array
   {
-    $name ??= $this->faker->word;
-    $description ??= $this->faker->paragraph;
     return [
-      'name' => $name,
-      'description' => $description,
+      'name' => $this->faker->word,
+      'description' => $this->faker->paragraph,
       'user_id' => function () {
         return User::factory()->create()->id;
       },
     ];
+  }
+
+  public function getOrCreateSubject(string $name, string $description, $user_id): array
+  {
+    $subject = Subject::firstOrCreate(
+      ['name' => $name],
+      ['description' => $description, 'user_id' => $user_id]
+    );
+
+    return $subject->toArray();
   }
 
   public function getDescription(?string $name = null): string
