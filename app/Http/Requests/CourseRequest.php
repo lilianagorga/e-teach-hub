@@ -24,7 +24,7 @@ class CourseRequest extends FormRequest
                 'name' => 'required|string|max:255',
                 'seats' => 'required|integer|between:1,99',
                 'subject_id' => 'required|exists:subjects,id',
-                'content' => 'sometimes',
+                'content' => 'sometimes|nullable|string',
             ];
         } elseif (strtolower($this->method()) == 'patch')
         {
@@ -32,7 +32,7 @@ class CourseRequest extends FormRequest
                 'name' => 'sometimes|required|string|max:255',
                 'seats' => 'sometimes|required|integer|between:1,99',
                 'subject_id' => 'sometimes|required|exists:subjects,id',
-                'content' => 'sometimes',
+                'content' => 'sometimes|nullable|string',
             ];
         } else
         {
