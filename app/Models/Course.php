@@ -25,9 +25,9 @@ class Course extends Model
       'content',
     ];
 
-    public function subject(): BelongsTo {
-      return $this->belongsTo(Subject::class);
-    }
+  public function subject(): BelongsTo {
+    return $this->belongsTo(Subject::class);
+  }
 
   public function user(): BelongsTo {
     return $this->belongsTo(User::class);
