@@ -195,6 +195,9 @@ git push origin feature-name
 
 * Open a pull request.
 
+## Live Deploy
+* The application will be accessible at http://164.90.221.159/
+
 ## License
 
 This API is licensed under the [MIT license](https://opensource.org/licenses/MIT).
