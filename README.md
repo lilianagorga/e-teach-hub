@@ -196,7 +196,7 @@ git push origin feature-name
 * Open a pull request.
 
 ## Live Deploy
-* The application will be accessible at http://164.90.221.159/
+* The application will be accessible at https://eteachhub.lilianagorga.com
 
 ## License
 
